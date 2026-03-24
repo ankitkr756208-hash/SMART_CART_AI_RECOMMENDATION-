@@ -1,5 +1,7 @@
 # 🛒 SmartCart AI Recommendation System
 
+🚀 **Live Demo:** https://smartcart-ai-75.streamlit.app/
+
 An AI powered customer intelligence & recommendation system that uses unsupervised learning to segment customers and generate business strategies.
 
 ---
