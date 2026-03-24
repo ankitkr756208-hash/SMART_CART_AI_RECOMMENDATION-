@@ -101,8 +101,3 @@ AI / ML Developer
 Give it a star ⭐ on GitHub
 
 
-
-
----
-
-## 🏗️ Project Architecture
