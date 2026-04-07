@@ -20,7 +20,7 @@ except ImportError:
 
 st.set_page_config(layout="wide")
 
-# ============ SIDEBAR ============
+# SIDEBAR 
 st.sidebar.header("Controls")
 uploaded_file = st.sidebar.file_uploader("Upload Dataset")
 model_choice = st.sidebar.selectbox(
@@ -66,7 +66,7 @@ THEME_COLORS = {
 }
 theme = THEME_COLORS[theme_choice]
 
-# ============ GLASSMORPHISM CSS ============
+#  GLASSMORPHISM CSS 
 css_template = """
 <style>
 :root {
@@ -315,7 +315,7 @@ def build_cluster_pdf(cluster_profile_df, active_model, active_k, silhouette_val
     pdf_buffer.seek(0)
     return pdf_buffer.getvalue()
 
-# ============ DATA PIPELINE ============
+#  DATA PIPELINE 
 if uploaded_file:
 
     df = pd.read_csv(uploaded_file)
@@ -425,7 +425,7 @@ if uploaded_file:
 
     max_clusters = min(10, n_samples)
 
-    # ============ AUTO K DETECTION ============
+    #  AUTO K DETECTION 
     wcss = []
     for i in range(1, max_clusters + 1):
         kmeans = KMeans(n_clusters=i,random_state=42)
@@ -455,7 +455,7 @@ if uploaded_file:
     df["Cluster"] = labels
     sil_score = safe_silhouette_score(X_pca, labels)
 
-    # ============ KPI CARDS ============
+    #  KPI CARDS 
     col1,col2,col3 = st.columns(3)
 
     col1.metric("Customers",len(df))
@@ -508,7 +508,7 @@ if uploaded_file:
             st.plotly_chart(fig_compare, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # ============ 3D ANIMATED CLUSTER ============
+    #  3D ANIMATED CLUSTER 
     st.markdown('<div class="glass">', unsafe_allow_html=True)
 
     fig = px.scatter_3d(
@@ -523,7 +523,7 @@ if uploaded_file:
     st.plotly_chart(fig,use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ============ BUSINESS GRAPH ============
+    #  BUSINESS GRAPH 
     st.markdown('<div class="glass">', unsafe_allow_html=True)
 
     plot_df = df.copy()
@@ -548,7 +548,7 @@ if uploaded_file:
     st.plotly_chart(fig2,use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ============ BUSINESS RECOMMENDATION ENGINE ============
+    # BUSINESS RECOMMENDATION ENGINE 
     st.markdown('<div class="glass">', unsafe_allow_html=True)
 
     st.subheader("📊 AI Business Recommendations")
@@ -568,15 +568,15 @@ if uploaded_file:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # ============ CLUSTER DISTRIBUTION ============
+    #  CLUSTER DISTRIBUTION 
     fig3 = px.histogram(df,x="Cluster",title="Cluster Distribution")
     st.plotly_chart(fig3,use_container_width=True)
 
-    # ============ SUMMARY ============
+    #  SUMMARY 
     st.subheader("Cluster Insights")
     st.dataframe(summary)
 
-    # ============ SMART RECOMMENDATION CENTER ============
+    #  SMART RECOMMENDATION CENTER 
     st.markdown('<div class="glass">', unsafe_allow_html=True)
     st.subheader("🎯 SmartCart Recommendation Center")
 
@@ -646,7 +646,7 @@ if uploaded_file:
     else:
         st.caption("Install reportlab to enable PDF export: pip install reportlab")
 
-    # ============ CUSTOMER LEVEL RECOMMENDATION ============
+    #  CUSTOMER LEVEL RECOMMENDATION 
     st.subheader("🧠 Customer-Level Recommendation")
     customer_idx = st.selectbox("Select customer index", options=df.index.tolist())
     customer = df.loc[customer_idx]
